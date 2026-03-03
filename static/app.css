@@ -1,0 +1,256 @@
+﻿:root {
+  --bg: #f5efe7;
+  --bg-2: #efe7dc;
+  --ink: #241e19;
+  --accent: #df7a2f;
+  --accent-2: #6f4e37;
+  --card: #fffaf3;
+  --muted: #7a6f63;
+  --shadow: 0 18px 40px rgba(36, 30, 25, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Space Grotesk", "Trebuchet MS", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, var(--bg) 0%, var(--bg-2) 60%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.page {
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  padding: 32px 0 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+
+.sub {
+  max-width: 520px;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #d05f2e;
+}
+
+.dot.ok {
+  background: #4f9d69;
+}
+
+.dot.bad {
+  background: #d05f2e;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-header h2 {
+  font-size: 1.4rem;
+}
+
+.card-header p {
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #1a1511;
+}
+
+video,
+#overlay {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+#overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+button {
+  border: none;
+  background: var(--accent);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 16px rgba(223, 122, 47, 0.25);
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button.ghost {
+  background: transparent;
+  color: var(--accent-2);
+  border: 1px solid rgba(111, 78, 55, 0.4);
+  box-shadow: none;
+}
+
+select {
+  border: 1px solid rgba(111, 78, 55, 0.4);
+  background: var(--card);
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--accent-2);
+}
+
+.prediction {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.big-letter {
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  font-weight: 700;
+}
+
+.confidence {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.top3 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.top3 span {
+  background: rgba(36, 30, 25, 0.08);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.text-box {
+  min-height: 120px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px dashed rgba(36, 30, 25, 0.25);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.helper {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.info-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.label-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: rgba(223, 122, 47, 0.15);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    align-items: flex-start;
+  }
+
+  .status {
+    width: fit-content;
+  }
+}

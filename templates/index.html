@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Language Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
+</head>
+
+<body>
+  <main class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">ASL Sign Language</p>
+        <h1>Live Sign Detection</h1>
+        <p class="sub">
+          Show a hand sign to the camera. The app predicts the letter, builds words,
+          and can speak your sentence.
+        </p>
+      </div>
+      <div class="status">
+        <span class="dot {{ 'ok' if model_loaded else 'bad' }}"></span>
+        <span>{{ 'Model loaded' if model_loaded else 'Model not loaded' }}</span>
+      </div>
+    </header>
+
+    <section class="grid">
+      <div class="card video-card">
+        <div class="card-header">
+          <h2>Camera</h2>
+          <p>Make sure your hand is well lit.</p>
+        </div>
+        <div class="video-frame">
+          <video id="video" autoplay playsinline></video>
+          <canvas id="overlay"></canvas>
+        </div>
+        <div class="controls">
+          <button id="startBtn">Start Camera</button>
+          <button id="stopBtn" class="ghost">Stop</button>
+          <label class="toggle">
+            <input type="checkbox" id="autoAppend" checked />
+            <span>Auto add letters</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card output-card">
+        <div class="card-header">
+          <h2>Prediction</h2>
+          <p>Stable letters are added to your sentence.</p>
+        </div>
+        <div class="prediction">
+          <div class="big-letter" id="letter">-</div>
+          <div class="confidence" id="confidence">Confidence: --</div>
+          <div class="top3" id="top3"></div>
+        </div>
+        <div class="text-box" id="sentence"></div>
+        <div class="controls">
+          <button id="spaceBtn">Add Space</button>
+          <button id="backspaceBtn" class="ghost">Backspace</button>
+          <button id="clearBtn" class="ghost">Clear</button>
+          <select id="langSelect">
+            <option value="en-US">English</option>
+            <option value="hi-IN">हिन्दी (Hindi)</option>
+            <option value="te-IN">తెలుగు (Telugu)</option>
+          </select>
+          <button id="speakBtn">Speak</button>
+        </div>
+        <div class="helper">
+          <p>Tip: Hold the same sign for a second to register a letter.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card info-card">
+      <div>
+        <h2>Labels</h2>
+        <p>Detected classes are loaded from your dataset.</p>
+      </div>
+      <div class="label-list">
+        {% for label in labels %}
+        <span class="chip">{{ label }}</span>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
