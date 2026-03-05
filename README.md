@@ -89,7 +89,7 @@ python -m venv .venv
 pip install flask opencv-python mediapipe tensorflow numpy pillow deep-translator gTTS
 ```
 
-### Step 4: Prepare the Dataset
+### Step 4: Prepare the Dat aset
 
 Place your ASL dataset in `dataset/asl_dataset/` with one folder per class:
 
