@@ -86,7 +86,7 @@ python -m venv .venv
 ### Step 3: Install Dependencies
 
 ```bash
-pip install flask opencv-python mediapipe tensorflow numpy pillow deep-translator gTTS
+pip install flask==3.0.2 opencv-python==4.9.0.80 mediapipe==0.10.11 tensorflow==2.15.0 numpy==1.26.4 pillow==10.2.0 deep-translator==1.11.4 gTTS==2.5.1
 ```
 
 ### Step 4: Prepare the Dat aset
