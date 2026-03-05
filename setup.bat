@@ -41,13 +41,10 @@ python -m pip install --upgrade pip
 
 echo [INFO] Installing required packages...
 pip install -r requirements.txt
-:: Also explicitly installing gTTS and deep-translator which are mentioned in README but might be missing from requirements.txt
-pip install deep-translator gTTS
 
 IF %ERRORLEVEL% NEQ 0 (
     echo.
-    echo [ERROR] Failed to install one or more dependencies.
-    echo Please check the error messages above.
+    echo [ERROR] Failed to install dependencies.
     pause
     exit /b 1
 )
@@ -57,6 +54,9 @@ echo ===================================================
 echo   Setup completed successfully!
 echo ===================================================
 echo.
-echo To run the application, simply double-click on "run_app.bat"
+echo [IMPORTANT] If you see a "Model Loading" error later:
+echo 1. Pull the latest code (git pull origin main)
+echo 2. Run: python train_landmarks.py
+echo This will regenerate the model for your specific computer.
 echo.
 pause
