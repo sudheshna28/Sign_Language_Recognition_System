@@ -5,22 +5,27 @@ echo ===================================================
 echo.
 
 :: Check if Python is installed
-python --version >nul 2>&1
+set PYTHON_CMD=python
+%PYTHON_CMD% --version >nul 2>&1
 IF %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Python is not installed or not in your PATH.
-    echo Please install Python 3.10 or 3.11 from https://www.python.org/
-    echo Make sure to check "Add Python to PATH" during installation.
-    pause
-    exit /b 1
+    set PYTHON_CMD=python3
+    %PYTHON_CMD% --version >nul 2>&1
+    IF %ERRORLEVEL% NEQ 0 (
+        echo [ERROR] Python is not installed or not in your PATH.
+        echo Please install Python 3.10 or 3.11 from https://www.python.org/
+        echo Make sure to check "Add Python to PATH" during installation.
+        pause
+        exit /b 1
+    )
 )
 
-echo [OK] Python is installed.
+echo [OK] Using %PYTHON_CMD%...
 
 :: Create virtual environment if it doesn't exist
 IF NOT EXIST ".venv" (
     echo.
     echo [INFO] Creating virtual environment ".venv"...
-    python -m venv .venv
+    %PYTHON_CMD% -m venv .venv
     IF %ERRORLEVEL% NEQ 0 (
         echo [ERROR] Failed to create virtual environment.
         pause
@@ -37,7 +42,7 @@ echo [INFO] Activating virtual environment and installing dependencies...
 call .venv\Scripts\activate.bat
 
 echo [INFO] Upgrading pip...
-python -m pip install --upgrade pip
+%PYTHON_CMD% -m pip install --upgrade pip
 
 echo [INFO] Installing required packages...
 pip install -r requirements.txt
